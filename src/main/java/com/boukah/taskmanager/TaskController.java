@@ -1,5 +1,6 @@
 package com.boukah.taskmanager;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,11 @@ import java.util.List;
 public class TaskController {
 
 
-    private TaskService service = new TaskService();
+    private final TaskService service;
+
+    public TaskController(TaskService service){
+        this.service = service;
+    }
 
 
     @GetMapping("/tasks")
@@ -28,7 +33,7 @@ public class TaskController {
     }
 
     @PutMapping("/tasks/{id}")
-    public Task updateTask(@PathVariable int id, @RequestBody Task newTask){
+    public Task updateTask(@PathVariable int id,@Valid @RequestBody Task newTask){
         return service.updateTask(id,newTask);
     }
 
