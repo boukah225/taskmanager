@@ -23,7 +23,7 @@ public class TaskController {
     }
 
     @PostMapping("/tasks")
-    public Task addTask(@RequestBody Task task){
+    public Task addTask(@Valid @RequestBody Task task){
         return service.addTask(task);
     }
 
